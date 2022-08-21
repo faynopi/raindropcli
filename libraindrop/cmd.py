@@ -18,7 +18,7 @@ License: MIT (https://opensource.org/licenses/MIT)
 def __addRawArgs__(p: argparse.ArgumentParser):
     p.add_argument("-r", "--raw", help="Print list in grepable format.",
             action="store_true")
-    p.add_argument("-s", "--sep", help="Raw format separator. (default = ','. Note: thiss will only used if you set the raw flag.)",
+    p.add_argument("-s", "--sep", help="Raw format separator. (default = ','. If the raw flag is not set, this value is ignored.)",
             default=",", type=str)
 
 
@@ -40,7 +40,7 @@ def Exec():
     createp.add_argument("-t", "--title", help="Raindrop title.", required=True, type=str)
     createp.add_argument("-l", "--link", help="Raindrop link.", required=True, type=str)
     createp.add_argument("-T", "--tags", help="Raindrop tags. (comma separated)", type=str)
-    createp.add_argument("-c", "--collection_id", help="collection_id", type=int)
+    createp.add_argument("-c", "--collection_id", metavar="id", help="collection_id", type=int)
     createp.add_argument("-f", "--favorite", help="Mark as favorite?", action="store_true")
 
     parser.add_argument("-v", "--version", action="store_true")

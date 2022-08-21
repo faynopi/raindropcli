@@ -4,6 +4,7 @@
 
 import requests
 from .utils import eprint, checkUrl
+from rich import print
 
 
 def getAllCollections(token: str) -> dict:

@@ -4,16 +4,16 @@
 
 import sys
 from rich import print
-from re import search
+import re
 
 
-URL_REGEX = r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$"
+URL_REGEX = r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$"
 
 def eprint(*args, **kwargs):
     print("[black bold on red][italic] Error [/italic][/black bold on red]", *args, file=sys.stderr, **kwargs)
 
 def checkUrl(link: str):
-    if not search(URL_REGEX, link):
+    if not re.match(URL_REGEX, link, flags=re.M):
         eprint("Please enter valid url!")
         exit(1)
 
