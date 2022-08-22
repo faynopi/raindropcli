@@ -11,7 +11,8 @@ def P_ColLsRaw(secret: str, sep: str):
     print(sep.join(["title", "creator", "count", "id"]))
     for i in col:
         if i and ({"title", "creatorRef", "count", "_id"} <= i.keys()):
-            print(sep.join([i["title"], i["creatorRef"]["name"], str(i["count"]), str(i["_id"])]))
+            print(sep.join([i.get("title"), i.get("creatorRef")["name"],
+                str(i.get("count")), str(i.get("_id"))]))
 
 
 def P_ColLsPretty(secret: str):
@@ -23,7 +24,7 @@ def P_ColLsPretty(secret: str):
 
     for i in col:
         if i and ({"title", "count", "_id"} <= i.keys()):
-            t.add_row(i["title"], str(i["count"]), str(i["_id"]))
+            t.add_row(i.get("title"), str(i.get("count")), str(i.get("_id")))
 
     c = Console()
     c.print(t)
@@ -32,10 +33,11 @@ def P_ColShowRaw(secret: str, sep: str, id: int):
     col = getCollectionWithId(secret, id)
     for i in col:
         if i and {"title", "type", "_id", "tags", "link"} <= i.keys():
-            print(sep.join([i["type"], i["title"], (" +" if i["important"] else " -"),
-                    "#".join(i["tags"]),
-                    i["link"],
-                    str(i["_id"])]))
+            print(sep.join([i.get("type"), i.get("title"),
+                (" +" if i.get("important") else " -"),
+                    "#".join(i.get("tags")),
+                    i.get("link"),
+                    str(i.get("_id"))]))
 
 def P_ColShowPretty(secret: str, id: int):
     col = getCollectionWithId(secret, id)
@@ -49,8 +51,7 @@ def P_ColShowPretty(secret: str, id: int):
     for i in col:
         if i and {"title", "type", "_id", "tags", "link"} <= i.keys():
             t.add_row(i.get("type"), i.get("title"), (" +" if i.get("important") else " -"),
-                    ",".join(i["tags"]),
-                    i["link"],
-                    str(i["_id"]))
+                    ",".join(i.get("tags") if i.get("tags") else []),
+                    i.get("link"), str(i.get("_id")))
     c = Console()
     c.print(t)
