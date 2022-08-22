@@ -31,6 +31,7 @@ def P_ColLsPretty(secret: str):
 
 def P_ColShowRaw(secret: str, sep: str, id: int):
     col = getCollectionWithId(secret, id)
+    print(sep.join(["type", "title", "fav", "tags", "link", "id"]))
     for i in col:
         if i and {"title", "type", "_id", "tags", "link"} <= i.keys():
             print(sep.join([i.get("type"), i.get("title"),
