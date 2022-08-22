@@ -10,7 +10,7 @@ def P_ColLsRaw(secret: str, sep: str):
     col = getAllCollections(secret)
     print(sep.join(["title", "creator", "count", "id"]))
     for i in col:
-        if i and ("title", "creatorRef", "count", "_id" in i):
+        if i and ({"title", "creatorRef", "count", "_id"} <= i.keys()):
             print(sep.join([i["title"], i["creatorRef"]["name"], str(i["count"]), str(i["_id"])]))
 
 
@@ -22,7 +22,7 @@ def P_ColLsPretty(secret: str):
     t.add_column("Id")
 
     for i in col:
-        if i and ("title", "count", "_id" in i):
+        if i and ({"title", "count", "_id"} <= i.keys()):
             t.add_row(i["title"], str(i["count"]), str(i["_id"]))
 
     c = Console()
@@ -31,7 +31,7 @@ def P_ColLsPretty(secret: str):
 def P_ColShowRaw(secret: str, sep: str, id: int):
     col = getCollectionWithId(secret, id)
     for i in col:
-        if i and ("title", "type", "important", "_id", "tags", "link" in i):
+        if i and {"title", "type", "_id", "tags", "link"} <= i.keys():
             print(sep.join([i["type"], i["title"], (" +" if i["important"] else " -"),
                     "#".join(i["tags"]),
                     i["link"],
@@ -47,8 +47,8 @@ def P_ColShowPretty(secret: str, id: int):
     t.add_column("URL")
     t.add_column("Id")
     for i in col:
-        if i and ("title", "type", "important", "_id", "tags", "link" in i):
-            t.add_row(i["type"], i["title"], (" +" if i["important"] else " -"),
+        if i and {"title", "type", "_id", "tags", "link"} <= i.keys():
+            t.add_row(i.get("type"), i.get("title"), (" +" if i.get("important") else " -"),
                     ",".join(i["tags"]),
                     i["link"],
                     str(i["_id"]))
