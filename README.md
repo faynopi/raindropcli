@@ -5,34 +5,7 @@ _Unofficial raindrop.io command-line interface_
 ![](https://img.shields.io/github/license/itsnexn/raindropcli?style=flat-square)
 ![](https://img.shields.io/github/last-commit/itsnexn/raindropcli?style=flat-square)
 
-```
-usage: raindropcli.py [-h] [-v] {show,list,create} ...
-
-Unofficial raindrop.io cli.
-
-positional arguments:
-  {show,list,create}  Modes
-    show              show the collection with id.
-      -r, --raw          Print list in grepable format.
-      -s SEP, --sep SEP  Raw format separator. (default = ','. If the raw flag is not set, this value is ignored.)
-
-    list              List all the collections
-      -r, --raw          Print list in grepable format.
-      -s SEP, --sep SEP  Raw format separator. (default = ','. If the raw flag is not set, this value is ignored.)
-
-    create            List all the collections
-      -t TITLE, --title TITLE
-                            Raindrop title.
-      -l LINK, --link LINK  Raindrop link.
-      -T TAGS, --tags TAGS  Raindrop tags. (comma separated)
-      -c id, --collection_id id
-                            collection_id
-      -f, --favorite        Mark as favorite?
-
-options:
-  -h, --help          show this help message and exit
-  -v, --version
-```
+[![asciicast](https://asciinema.org/a/PqQJmzZFXAppKGmMGiyp7HqrY.svg)](https://asciinema.org/a/PqQJmzZFXAppKGmMGiyp7HqrY)
 
 This script's primary objective is to integrate with other scripts.
 show and list methods has `-r, --raw` and `-s, --sep` option wich you
@@ -77,7 +50,8 @@ for vim.
 - [ ] Support for child collections
 - [ ] Update existing raindrop
 - [ ] Remove raindrops using their id
-- [ ] Add asciinema to the README
+- [x] Add asciinema to the README
+- [ ] Border style customizability
 
 ## License
 
