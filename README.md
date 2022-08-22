@@ -34,22 +34,43 @@ options:
   -v, --version
 ```
 
+This script's primary objective is to integrate with other scripts.
+show and list methods has `-r, --raw` and `-s, --sep` option wich you
+can help you to achive this goal.
+
 ## Installation
+**NOTE:** Before you run the program make sure you create [configuration](#configuration) file.
 
 you can either install the raindropcli using:
 ```
-$ ./setup.py install
-$ raindropcli
+$ pip install git+https://github.com/itsnexn/raindropcli.git@master
 ```
-or you can use it as it is.
+or you can clone it and use it as it is.
 ```
+$ git clone https://github.com/itsnexn/raindropcli.git
+$ cd raindropcli
 $ pip install -r requirements.txt
 $ python3 raindropcli.py
 ```
 
-This script's primary objective is to integrate with other scripts.
-show and list methods has `-r, --raw` and `-s, --sep` option wich you
-can help you to achive this goal.
+## Configuration
+
+Make sure you create a configuration file under `$HOME/.raindropcli.conf`
+or `$XDG_CONFIG_HOME/raindropcli.conf`.
+
+go to [Settings > Integration](https://app.raindrop.io/settings/integrations).
+Click on the "Create new app" you may name it whatever you want but I
+recommend "raindropcli". following the creation of your new app, click
+on it to generate a new test token which you should include in your
+configuration file.
+
+Your configuration file should look something like this:
+```
+# vim: syntax=toml
+token = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+```
+you don't actually need the vim command. its just for syntax highlighting
+for vim.
 
 ## TODO
 

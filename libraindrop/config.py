@@ -6,6 +6,7 @@ from os import path, environ
 from pathlib import Path
 from re import search
 import toml
+from .utils import eprint
 
 
 XDG_CONFIG_DIR = environ.get("XDG_CONFIG_DIR")
@@ -26,21 +27,22 @@ def getConfigDir() -> str | None:
 def parseConfig() -> dict:
     conf_dir = getConfigDir()
     if not conf_dir:
-        print("config file doesnt exists!")
-        print("https://github.com/itsnexn/raindropcli#installation")
+        eprint("config file doesnt exists!")
+        eprint("https://github.com/itsnexn/raindropcli#configuration")
         exit(1)
 
     data = toml.load(conf_dir)
 
     if not data["token"]:
-        print("Error: empty token ! Aborting.")
-        print("https://github.com/itsnexn/raindropcli#installation")
+        eprint("Error: empty token ! Aborting.")
+        eprint("https://github.com/itsnexn/raindropcli#configuration")
         exit(1)
 
     if not search(r"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
             data["token"]):
-        print("Error: invalid token! Aborting")
-        print("https://github.com/itsnexn/raindropcli#installation")
+        eprint("Error: invalid token! Aborting")
+        eprint("https://github.com/itsnexn/raindropcli#configuration")
+        exit(1)
 
     return {
         "token": data["token"]
