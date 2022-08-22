@@ -3,7 +3,7 @@
 # Repo: https://github.com/itsnexn/raindropcli
 # Licensed under MIT (https://opensource.org/licenses/MIT)
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name = "raindropcli",
