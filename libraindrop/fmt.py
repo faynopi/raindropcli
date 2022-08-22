@@ -34,7 +34,7 @@ def P_ColShowRaw(secret: str, sep: str, id: int):
     for i in col:
         if i and {"title", "type", "_id", "tags", "link"} <= i.keys():
             print(sep.join([i.get("type"), i.get("title"),
-                (" +" if i.get("important") else " -"),
+                ("true" if i.get("important") else "false"),
                     "#".join(i.get("tags")),
                     i.get("link"),
                     str(i.get("_id"))]))
