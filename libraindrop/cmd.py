@@ -15,11 +15,13 @@ Version: 1.0.0
 License: MIT (https://opensource.org/licenses/MIT)
 """
 
+
 def __addRawArgs__(p: argparse.ArgumentParser):
     p.add_argument("-r", "--raw", help="Print list in grepable format.",
-            action="store_true")
-    p.add_argument("-s", "--sep", help="Raw format separator. (default = ','. If the raw flag is not set, this value is ignored.)",
-            default=",", type=str)
+                   action="store_true")
+    p.add_argument("-s", "--sep", default=",", type=str,
+                   help="Raw format separator. (default = ','."
+                        "If the raw flag is not set, this value is ignored.)")
 
 
 def Exec():
@@ -30,18 +32,23 @@ def Exec():
 
     col_showp = mparser.add_parser("show", help="show the collection with id.")
     col_showp.add_argument("collection_id", help="id of Collection to show",
-            type=int)
+                           type=int)
     __addRawArgs__(col_showp)
 
     collsp = mparser.add_parser("list", help="List all the collections")
     __addRawArgs__(collsp)
 
     createp = mparser.add_parser("create", help="List all the collections")
-    createp.add_argument("-t", "--title", help="Raindrop title.", required=True, type=str)
-    createp.add_argument("-l", "--link", help="Raindrop link.", required=True, type=str)
-    createp.add_argument("-T", "--tags", help="Raindrop tags. (comma separated)", type=str)
-    createp.add_argument("-c", "--collection_id", metavar="id", help="collection_id", type=int)
-    createp.add_argument("-f", "--favorite", help="Mark as favorite?", action="store_true")
+    createp.add_argument("-t", "--title", help="Raindrop title.",
+                         required=True, type=str)
+    createp.add_argument("-l", "--link", help="Raindrop link.",
+                         required=True, type=str)
+    createp.add_argument("-T", "--tags",
+                         help="Raindrop tags. (comma separated)", type=str)
+    createp.add_argument("-c", "--collection_id", metavar="id",
+                         help="collection_id", type=int)
+    createp.add_argument("-f", "--favorite", help="Mark as favorite?",
+                         action="store_true")
 
     parser.add_argument("-v", "--version", action="store_true")
 
@@ -55,7 +62,7 @@ def Exec():
     elif args["mode"]:
         if args["mode"] == "list":
             if args["raw"]:
-                P_ColLsRaw(token,args["sep"])
+                P_ColLsRaw(token, args["sep"])
             else:
                 P_ColLsPretty(config["token"])
         elif args["mode"] == "show":
@@ -64,9 +71,13 @@ def Exec():
             else:
                 P_ColShowPretty(config["token"], args["collection_id"])
         elif args["mode"] == "create":
-            createRaindrop(token, args["title"], args["link"], args["collection_id"], args["tags"], args["favorite"])
+            createRaindrop(token, args["title"], args["link"],
+                           args["collection_id"], args["tags"],
+                           args["favorite"])
         else:
             parser.print_help()
             exit(1)
+    else:
+        parser.print_help()
+        exit(1)
     exit(0)
-

@@ -17,7 +17,8 @@ def getAllCollections(token: str) -> dict:
     headers = {
         "Authorization": f"Bearer {token}"
     }
-    r = requests.get("https://api.raindrop.io/rest/v1/collections", headers=headers)
+    r = requests.get("https://api.raindrop.io/rest/v1/collections",
+                     headers=headers)
 
     try:
         if j := r.json():
@@ -42,7 +43,8 @@ def getCollectionWithId(token: str, id: int) -> dict:
     headers = {
         "Authorization": f"Bearer {token}"
     }
-    r = requests.get(f"https://api.raindrop.io/rest/v1/raindrops/{id}", headers=headers)
+    r = requests.get(f"https://api.raindrop.io/rest/v1/raindrops/{id}",
+                     headers=headers)
     try:
         if j := r.json():
             if j["result"]:
@@ -53,7 +55,10 @@ def getCollectionWithId(token: str, id: int) -> dict:
 
     return {}
 
-def createRaindrop(token: str, title: str, link: str, collection_id: int | None, tags: str | None, fav: bool) -> dict:
+
+def createRaindrop(token: str, title: str, link: str,
+                   collection_id: int | None, tags: str | None,
+                   fav: bool) -> dict:
     """Create new raindrop
 
     @params:
@@ -90,9 +95,11 @@ def createRaindrop(token: str, title: str, link: str, collection_id: int | None,
         if collection_id in [i["_id"] for i in cols]:
             data["collection"] = {"$id": collection_id}
         else:
-            eprint("{collection_id} is not a valid id. skipping the collection_id part.")
+            eprint("{collection_id} is not a valid id."
+                   "skipping the collection_id part.")
 
-    r = requests.post(f"https://api.raindrop.io/rest/v1/raindrop", headers=headers, json=data)
+    r = requests.post("https://api.raindrop.io/rest/v1/raindrop",
+                      headers=headers, json=data)
     try:
         if j := r.json():
             if j["result"]:

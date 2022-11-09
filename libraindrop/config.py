@@ -12,6 +12,7 @@ from .utils import eprint
 XDG_CONFIG_DIR = environ.get("XDG_CONFIG_HOME")
 HOMEDIR = Path.home()
 
+
 def getConfigDir() -> str | None:
     if XDG_CONFIG_DIR:
         p = path.join(XDG_CONFIG_DIR, "raindropcli.conf")
@@ -34,11 +35,12 @@ def parseConfig() -> dict:
     data = toml.load(conf_dir)
 
     if not data["token"]:
-        eprint("Error: empty token ! Aborting.")
+        eprint("Error: empty token! Aborting.")
         eprint("https://github.com/itsnexn/raindropcli#configuration")
         exit(1)
 
-    if not search(r"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+    if not search(
+            r"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
             data["token"]):
         eprint("Error: invalid token! Aborting")
         eprint("https://github.com/itsnexn/raindropcli#configuration")
