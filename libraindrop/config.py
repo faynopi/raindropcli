@@ -9,7 +9,7 @@ import toml
 from .utils import eprint
 
 
-XDG_CONFIG_DIR = environ.get("XDG_CONFIG_DIR")
+XDG_CONFIG_DIR = environ.get("XDG_CONFIG_HOME")
 HOMEDIR = Path.home()
 
 def getConfigDir() -> str | None:
