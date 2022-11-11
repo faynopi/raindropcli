@@ -52,6 +52,7 @@ for vim.
 - [ ] Remove raindrops using their id
 - [x] Add asciinema to the README
 - [ ] Border style customizability
+- [ ] Add simple cacheing
 
 ## License
 
