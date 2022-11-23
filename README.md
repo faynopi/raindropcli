@@ -7,12 +7,12 @@ _Unofficial raindrop.io command-line interface_
 
 [![asciicast](https://asciinema.org/a/PqQJmzZFXAppKGmMGiyp7HqrY.svg)](https://asciinema.org/a/PqQJmzZFXAppKGmMGiyp7HqrY)
 
-This script's primary objective is to integrate with other scripts.
-show and list methods has `-r, --raw` and `-s, --sep` option wich you
-can help you to achive this goal.
+The primary goal of this script is to integrate with other scripts.
+show and list methods have `-r`,`--raw` and `-s`,`--sep` flags that are
+relevant in this objective.
 
 ## Installation
-**NOTE:** Before you run the program make sure you create [configuration](#configuration) file.
+**NOTE:** Before you run the program, you must create [configuration](#configuration) file.
 
 you can either install the raindropcli using:
 ```
@@ -29,7 +29,7 @@ $ python3 raindropcli.py
 ## Configuration
 
 Make sure you create a configuration file under `$HOME/.raindropcli.conf`
-or `$XDG_CONFIG_HOME/raindropcli.conf`.
+or `$XDG_CONFIG_HOME/raindropcli.conf` directory.
 
 go to [Settings > Integration](https://app.raindrop.io/settings/integrations).
 Click on the "Create new app" you may name it whatever you want but I
